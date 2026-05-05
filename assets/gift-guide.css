@@ -1,0 +1,116 @@
+/* font Family */
+
+@font-face {
+  font-family: "Jost";
+  src: url("https://cdn.shopify.com/s/files/1/0747/8784/8346/files/Jost-Regular.woff2?v=1777992588")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jost";
+  src: url("https://cdn.shopify.com/s/files/1/0747/8784/8346/files/Jost-Medium_1.woff2?v=1777992586")
+    format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jost";
+  src: url("https://cdn.shopify.com/s/files/1/0747/8784/8346/files/Jost-Bold.woff2?v=1777992585")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lustria";
+  src: url("https://cdn.shopify.com/s/files/1/0747/8784/8346/files/Lustria-Regular.woff2?v=1777992584")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* main-banner.liquid Css Start */
+.Container {
+  padding: 0 50px;
+  margin: 0 auto;
+}
+/* Top Header Css Start */
+.main_gift_wrapper .main_header_wrapper {
+  width: 100%;
+  background-color: #f5f5f5;
+}
+.header_box .header_grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.header_grid_col .logo_box img {
+  max-width: 151.44px;
+  height: 19px;
+  object-fit: cover;
+  display: flex;
+}
+.header_grid_col p {
+  font-family: "Jost", sans-serif;
+  font-size: 16px;
+  line-height: 13.42px;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-style: Regular;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+}
+.header_grid_col .header_button {
+  padding: 10px 0;
+}
+.header_button a.custom-btn {
+  font-family: "Jost", sans-serif;
+  font-size: 16px;
+  line-height: 20.48px;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-style: Regular;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  padding: 11.67px 64px 11.67px 41px;
+  display: inline-block;
+}
+/* Top Header Css End */
+/* Banner Css Start */
+.banner_wrapper .bannerImg {
+  width: 100%;
+  display: flex;
+}
+.banner_wrapper .bannerImg img {
+  width: 100%;
+  display: flex;
+  object-fit: contain;
+}
+
+.banner-bottom-wrapper .banner-grid {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+  width: 100%;
+  padding: 0 24px 0px 67px;
+}
+.banner-bottom-wrapper .bannerimg2,
+.banner-bottom-wrapper .bannerimg2 img {
+  width: 100%;
+  display: flex;
+}
+.banner-bottom-wrapper .banner-grid-col-1 {
+  width: 61.81%;
+}
+.banner-bottom-wrapper .banner-grid-col-2 {
+  width: 38.19%;
+}
+
+/* main-banner.liquid Css End */

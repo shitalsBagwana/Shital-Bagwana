@@ -1,0 +1,13 @@
+{% if label != blank %}
+  <a
+    href="{{ link | default: '#' }}"
+    class="custom-btn {{ class }}"
+    style="
+      background-color: {{ bg_color }};
+      color: {{ text_color }};
+      border-radius: {{ border_radius }}px;
+    "
+  >
+    {{ label }}
+  </a>
+{% endif %}

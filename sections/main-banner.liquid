@@ -1,0 +1,261 @@
+<div class="main_gift_wrapper">
+  <div class="main_header_wrapper">
+    <div class="Container">
+      <div class="header_box">
+        {% for block in section.blocks %}
+          <div class="header_grid">
+            <div class="header_grid_col">
+              <div class="logo_box">
+                {% if block.settings.logo_image != blank %}
+                  <img
+                    src="{{ block.settings.logo_image | img_url: 'master' }}"
+                    alt="Gift Logo"
+                    width=""
+                    height=""
+                  >
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="header_grid_col">
+              {% if block.settings.header_text != blank %}
+                <h2>{{ block.settings.header_text }}</h2>
+              {% endif %}
+            </div>
+
+            <div class="header_grid_col">
+              <div class="header_button">
+                <div
+                  style="
+                    --btn-hover-bg: {{ block.settings.btn_hover_bg }};
+                    --btn-hover-text: {{ block.settings.btn_hover_text }};
+                  "
+                >
+                  {% render 'gift-button',
+                    label: block.settings.btn_label,
+                    link: block.settings.btn_link,
+                    bg_color: block.settings.btn_bg,
+                    text_color: block.settings.btn_text
+                  %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% comment %} Banner code Start {% endcomment %}
+  <div class="banner_wrapper">
+    {% if section.settings.bg_image != blank %}
+      <div class="bannerImg">
+        <img
+          src="{{ section.settings.bg_image | img_url:"master" }}"
+          alt="Banner Background Image"
+          width=""
+          height=""
+        >
+      </div>
+    {% endif %}
+    <div class="banner-bottom-wrapper">
+      <div class="banner-grid">
+        <div class=" banner-grid-col-1">
+          <div class="bannerimg2">
+            <img
+              src="{{ section.settings.bg_image2  | img_url:"master" }}"
+              alt="Background Right Image"
+              ,
+              width=""
+              height=""
+            >
+          </div>
+        </div>
+        <div class="banner-grid-col-2">
+          <div class="banner-content">
+            <div class="banner-headding">
+              <h2>{{ section.settings.title }}</h2>
+            </div>
+            <div class="banner_paragraph">
+              {% if section.settings.description != blank %}
+                {{ section.settings.description }}
+              {% endif %}
+            </div>
+            <div class="banner-button">
+              <div
+                style="
+                  --btn-hover-bg: {{ section.settings.btn_hover_bg }};
+                  --btn-hover-text: {{ section.settings.btn_hover_text }};
+                "
+              >
+                {% render 'gift-button',
+                  label: section.settings.btn_label,
+                  link: section.settings.btn_link,
+                  bg_color: section.settings.btn_bg,
+                  text_color: section.settings.btn_text
+                %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gift Guide Banner",
+  "class": "gift-guide-banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Top Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Background Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image2",
+      "label": "Right Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Add Title",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "btn_text",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "btn_hover_bg",
+      "label": "Hover Background Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "btn_hover_text",
+      "label": "Hover Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content_block",
+      "name": "Header",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "top_text",
+          "label": "Top Text",
+          "default": "TISSOT VISION"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Logo Image"
+        },
+        {
+          "type": "richtext",
+          "id": "header_text",
+          "label": "Header Content",
+          "default": "<p>Find the ideal gift for your loved ones.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Button Settings"
+        },
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button Label",
+          "default": "choose gift"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "btn_bg",
+          "label": "Background Color",
+          "default": "#FFF544"
+        },
+        {
+          "type": "color",
+          "id": "btn_text",
+          "label": "Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "btn_hover_bg",
+          "label": "Hover Background Color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "btn_hover_text",
+          "label": "Hover Text Color",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gift Guide Banner",
+      "blocks": [
+        {
+          "type": "content_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
