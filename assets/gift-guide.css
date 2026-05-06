@@ -41,6 +41,7 @@
 .main_gift_wrapper .main_header_wrapper {
   width: 100%;
   background-color: #f5f5f5;
+  position: relative;
 }
 .header_box .header_grid {
   display: flex;
@@ -81,6 +82,48 @@
   padding: 11.67px 64px 11.67px 41px;
   display: inline-block;
 }
+.header_box .mobile_header_wrapper {
+  display: none;
+}
+.header_grid.mobile_header .crossIcon {
+  display: none;
+}
+/* media Query  */
+@media (max-width: 768px) {
+  .Container {
+    padding: 0;
+    margin: 0 auto;
+  }
+  .header_box .header_grid.desktopHeader {
+    display: none;
+  }
+  .header_box .mobile_header_wrapper {
+    display: block;
+  }
+  .header_box .header_grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 23px 17px;
+    box-shadow: 0 4px 10px #0000001a;
+  }
+  .header_grid.mobile_header.active .menuIcon {
+    display: none;
+  }
+  .header_grid.mobile_header.active .crossIcon {
+    display: block;
+  }
+  .slideshowHeader {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
 /* Top Header Css End */
 /* Banner Css Start */
 .banner_wrapper .bannerImg {
@@ -95,16 +138,26 @@
 
 .banner-bottom-wrapper .banner-grid {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
   flex-direction: row-reverse;
+  align-items: center;
   width: 100%;
-  padding: 0 24px 0px 67px;
+  gap: 24px;
 }
 .banner-bottom-wrapper .bannerimg2,
 .banner-bottom-wrapper .bannerimg2 img {
   width: 100%;
   display: flex;
+}
+.banner-bottom-wrapper .mobileimg2,
+.banner-bottom-wrapper .mobile_wrapper,
+.banner-bottom-wrapper .banner_paragraph.mobile_paragraph,
+.main_gift_wrapper .footer_box.footer_mob {
+  display: none;
+}
+.banner-bottom-wrapper .mobileimg2 img {
+  width: 100%;
+  object-fit: cover;
 }
 .banner-bottom-wrapper .banner-grid-col-1 {
   width: 61.81%;
@@ -112,5 +165,251 @@
 .banner-bottom-wrapper .banner-grid-col-2 {
   width: 38.19%;
 }
+.banner-content {
+  margin: 0 24px 0px 67px;
+}
+.banner-bottom-wrapper .banner_paragraph,
+.banner-bottom-wrapper .banner-headding {
+  margin: 0 0px 50px;
+}
+.banner-bottom-wrapper .banner-headding h2 {
+  font-family: "Jost", sans-serif;
+  font-size: 70px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  font-weight: 500;
+  color: #000000;
+  font-style: Medium;
+  vertical-align: middle;
+}
+.banner-bottom-wrapper .banner_paragraph p {
+  font-family: "Jost", sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0px;
+  font-weight: 400;
+  color: #000000;
+  font-style: Regular;
+  vertical-align: middle;
+}
+
+.banner-bottom-wrapper a.custom-btn {
+  font-family: "Jost", sans-serif;
+  font-size: 16px;
+  line-height: 20.48px;
+  letter-spacing: 0px;
+  text-align: center;
+  font-weight: 400;
+  font-style: Regular;
+  vertical-align: middle;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 14.26px 77px 14.74px 55px;
+}
+
+/* Footer Css  */
+.main_gift_wrapper .footer_wrapper {
+  background: #f5f5f5;
+  padding: 10px 0;
+}
+.main_gift_wrapper .footer_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.main_gift_wrapper .footer_box h3 {
+  font-family: "Jost", sans-serif;
+  font-size: 16px;
+  line-height: 13.42px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #000000;
+  font-style: Regular;
+
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .banner_wrapper .bannerImg {
+    display: none;
+  }
+  .banner_wrapper .bannerImg,
+  .banner-bottom-wrapper .bannerimg2,
+  .banner-bottom-wrapper .banner-button,
+  .banner-bottom-wrapper .banner_paragraph,
+  .banner-bottom-wrapper .banner_paragraph.mobile_paragraph,
+  .main_gift_wrapper .footer_box {
+    display: none;
+  }
+  .banner-bottom-wrapper .mobileimg2,
+  .banner-bottom-wrapper .mobile_wrapper,
+  .banner-bottom-wrapper .banner_paragraph.mobile_paragraph,
+  .main_gift_wrapper .footer_box.footer_mob {
+    display: block;
+  }
+  .banner-bottom-wrapper .banner-grid {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+  .banner-bottom-wrapper .banner-grid-col-1,
+  .banner-bottom-wrapper .banner-grid-col-2 {
+    width: 100%;
+  }
+  .banner-content {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0px 17px;
+  }
+  .banner-bottom-wrapper .banner-headding {
+    margin: 49px 0 0px;
+  }
+  .banner-bottom-wrapper .banner_paragraph {
+    margin: 24px 0 0px;
+  }
+  .banner-bottom-wrapper .banner-headding h2 {
+    font-size: 30px;
+  }
+  .banner-bottom-wrapper .banner_paragraph p {
+    font-size: 16px;
+    line-height: 20.8px;
+    text-align: center;
+  }
+  .main_gift_wrapper .footer_box h3 {
+    font-size: 14px;
+    line-height: 13.42px;
+  }
+  .banner-bottom-wrapper .mobile_wrapper {
+    position: relative;
+  }
+  .banner-bottom-wrapper .banner-button.mobile_button {
+    position: absolute;
+    bottom: 39px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .banner-bottom-wrapper a.custom-btn {
+    padding: 13px 54px 13px 20px;
+  }
+}
+
+/* header  */
 
 /* main-banner.liquid Css End */
+
+/* tisso-vision.liquid css Start */
+.tisso_vision_main_wrapper {
+  width: 100%;
+  position: relative;
+}
+.tisso_vision_main_wrapper .tisso_conatianer {
+  max-width: 1440px;
+  margin: 90px 51px 51px;
+}
+.tisso_vision_main_wrapper .tisso_heading {
+  margin-bottom: 30px;
+}
+.tisso_vision_main_wrapper .tisso_heading h2 {
+  font-family: "Lustria", sans-serif;
+  font-size: 36px;
+  line-height: 43.2px;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-style: Regular;
+  color: #000000;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.tisso_vision_main_wrapper .tisso_product_image img {
+  width: 100%;
+  object-fit: cover;
+  display: flex;
+  min-height: 444px;
+}
+
+.tisso_product_grid .tisso_product_col {
+  width: 100%;
+}
+.tisso_product_grid .tisso_product {
+  position: relative;
+}
+.tisso_product .dot-area {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.tisso_product span.plusDog {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  background: #f8f8f8e5;
+  align-items: center;
+  justify-content: center;
+  border: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* SELECT OPTION */
+.select {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 300px;
+  height: 45px;
+  line-height: 45px;
+  background: #5c6664;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.select select {
+  /* -webkit-appearance: none; */
+  appearance: none;
+  /* border: none; */
+  /* background: transparent; */
+  color: #000;
+  /* padding: 0 10px; */
+  width: 100%;
+  cursor: pointer;
+  border: 0.5px solid #000000;
+  border-radius: unset;
+}
+.select select option {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: -2%;
+  text-align: center;
+  vertical-align: middle;
+}
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0 15px;
+  background: #2b2e2e;
+  pointer-events: none;
+}
+@media (min-width: 768px) {
+  .tisso_vision_main_wrapper .tisso_product_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+}

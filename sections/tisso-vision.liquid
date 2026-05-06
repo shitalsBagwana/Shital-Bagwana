@@ -1,0 +1,211 @@
+<div
+  class="tisso_vision_main_wrapper"
+>
+  <div class="tisso_conatianer">
+    <!-- Heading -->
+    <div class="tisso_heading">
+      {% if section.settings.section_title != blank %}
+        <h2>{{ section.settings.section_title }}</h2>
+      {% endif %}
+    </div>
+
+    <!-- Product Grid -->
+    <div
+      class="tisso_product_grid"
+      style="gap: {{ section.settings.grid_gap }}px;"
+    >
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+
+        {% if product != blank %}
+          <div class="tisso_product_col">
+            <div class="tisso_product">
+              <!-- Product Image -->
+              <div class="tisso_product_image">
+                <img
+                  src="{{ product.featured_image | img_url: 'master' }}"
+                  alt="{{ product.title }}"
+                  width=""
+                  height=""
+                >
+              </div>
+              <div
+                class="dot-area"
+                style="
+                  top: {{ block.settings.dot_top }}%;
+                  left: {{ block.settings.dot_left }}%;
+                "
+              >
+                <span class="plusDog">
+                  {% render 'dots' %}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {% comment %} product popup {% endcomment %}
+          <div class="main-popup">
+            <div class="popupCross">{% render 'crossIcon' %}</div>
+            <div class="product-row-box">
+              <div class="product-popupimage">
+                <img
+                  src="{{ product.featured_image | img_url: 'master' }}"
+                  alt="{{ product.title }}"
+                  width=""
+                  height=""
+                >
+              </div>
+              <div class="product_description_box">
+                <h4>{{ product.title }}</h4>
+                <h3>{{ product.price | money_with_currency }}</h3>
+                {{ product.description }}
+              </div>
+              <div class="product_options">
+                <div class="product-variant hidden">
+                  {% for variant in product.variants %}
+                    <span
+                      class="variant_box"
+                      productVariant="{{ variant.title }}"
+                      productId="{{ variant.id }}"
+                    >
+                      {{ variant.title }}
+                    </span>
+                  {% endfor %}
+                </div>
+                {% comment %}
+                  <div class="selected_variant_options">
+                    {% for option in product.options_with_values %}
+                      <div class="option_block">
+                        <h3>{{ option.name }}:</h3>
+                        {% for value in option.values %}
+                          <span class="{% if value == option.selected_value %}active{% endif %}">
+                            {{ value }}
+                          </span>
+                        {% endfor %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endcomment %}
+
+                <div class="custom_variant_wrapper">
+                  {% for option in product.options_with_values %}
+                    <div class="variant_block">
+                      <!-- Option Name -->
+                      <label class="variant_label">{{ option.name }}</label>
+                      {% if option.name == 'Color' %}
+                        <!-- Color Buttons -->
+                        <div class="color_options">
+                          {% for value in option.values %}
+                            <div class="option_button">
+                              <span> {{ value }}</span>
+                            </div>
+                          {% endfor %}
+                        </div>
+
+                      {% elsif option.name == 'Size' %}
+                        <!-- Dropdown -->
+                        {% comment %}
+                          <div class="custom_select">
+                            <div class="select_box">
+                              <span class="selected_text">
+                                {{ option.selected_value | default: 'Choose your size' }}
+                              </span>
+                              <span class="arrow">⌄</span>
+                            </div>
+
+                            <ul class="dropdown_list">
+                              {% for value in option.values %}
+                                <li
+                                  class="{% if value == option.selected_value %}active{% endif %}"
+                                  data-value="{{ value }}"
+                                >
+                                  {{ value }}
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        {% endcomment %}
+
+                        <div class="select">
+                          <select name="id" id="productSelect">
+                            <option disabled selected>Choose your {{ product.options_with_values[0].name }}</option>
+
+                            {% for value in option.values %}
+                              <option optionvalue="{{ value }}">
+                                {{ value }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Tisso Vision Product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Tisso vision in the wild"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid Spacing",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product Item",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
+          "type": "range",
+          "id": "dot_top",
+          "label": "Dot Vertical Position (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "dot_left",
+          "label": "Dot Horizontal Position (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tisso Vision Grid"
+    }
+  ]
+}
+{% endschema %}

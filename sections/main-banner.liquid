@@ -1,46 +1,207 @@
 <div class="main_gift_wrapper">
   <div class="main_header_wrapper">
     <div class="Container">
-      <div class="header_box">
-        {% for block in section.blocks %}
-          <div class="header_grid">
-            <div class="header_grid_col">
-              <div class="logo_box">
+      {% comment %}
+        <div class="header_box">
+          {% for block in section.blocks %}
+            {% if block.settings.logo_image != blank
+              or block.settings.header_text != blank
+              or block.settings.btn_label != blank
+            %}
+              <div class="header_grid desktopHeader">
                 {% if block.settings.logo_image != blank %}
-                  <img
-                    src="{{ block.settings.logo_image | img_url: 'master' }}"
-                    alt="Gift Logo"
-                    width=""
-                    height=""
-                  >
+                  <div class="header_grid_col">
+                    <div class="logo_box">
+                      <img
+                        src="{{ block.settings.logo_image | img_url: 'master' }}"
+                        alt="Gift Logo"
+                        width=""
+                        height=""
+                      >
+                    </div>
+                  </div>
+                {% endif %}
+                {% if block.settings.header_text != blank %}
+                  <div class="header_grid_col">
+                    <h2>{{ block.settings.header_text }}</h2>
+                  </div>
+                {% endif %}
+                {% if block.settings.btn_label != blank %}
+                  <div class="header_grid_col">
+                    <div class="header_button">
+                      <div
+                        style="
+                          --btn-hover-bg: {{ block.settings.btn_hover_bg }};
+                          --btn-hover-text: {{ block.settings.btn_hover_text }};
+                        "
+                      >
+                        {% render 'gift-button',
+                          label: block.settings.btn_label,
+                          link: block.settings.btn_link,
+                          bg_color: block.settings.btn_bg,
+                          text_color: block.settings.btn_text
+                        %}
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+            <div class="mobile_header_wrapper">
+              <div class="header_grid mobile_header">
+                {% if block.settings.logo_image != blank %}
+                  <div class="header_grid_col">
+                    <div class="logo_box">
+                      <img
+                        src="{{ block.settings.logo_image | img_url: 'master' }}"
+                        alt="Gift Logo"
+                        width=""
+                        height=""
+                      >
+                    </div>
+                  </div>
+                {% endif %}
+                <div class="header_grid_col">
+                  <span class="menuIcon">{% render 'menuIcon' %}</span>
+                  <span class="crossIcon">{% render 'crossicon' %}</span>
+                </div>
+              </div>
+              <div class="slideshowHeader">
+                {% if block.settings.header_text != blank %}
+                  <div class="header_grid_col">
+                    <h2>{{ block.settings.header_text }}</h2>
+                  </div>
+                {% endif %}
+                {% if block.settings.btn_label != blank %}
+                  <div class="header_grid_col">
+                    <div class="header_button">
+                      <div
+                        style="
+                          --btn-hover-bg: {{ block.settings.btn_hover_bg }};
+                          --btn-hover-text: {{ block.settings.btn_hover_text }};
+                        "
+                      >
+                        {% render 'gift-button',
+                          label: block.settings.btn_label,
+                          link: block.settings.btn_link,
+                          bg_color: block.settings.btn_bg,
+                          text_color: block.settings.btn_text
+                        %}
+                      </div>
+                    </div>
+                  </div>
                 {% endif %}
               </div>
             </div>
+          {% endfor %}
+        </div>
+      {% endcomment %}
 
-            <div class="header_grid_col">
-              {% if block.settings.header_text != blank %}
-                <h2>{{ block.settings.header_text }}</h2>
-              {% endif %}
-            </div>
+      <div class="header_box">
+        {% for block in section.blocks %}
+          {% if block.settings.logo_image != blank
+            or block.settings.header_text != blank
+            or block.settings.btn_label != blank
+          %}
+            <!-- DESKTOP HEADER -->
+            <div class="gift_header">
+              <div class="header_grid desktopHeader">
+                {% if block.settings.logo_image != blank %}
+                  <div class="header_grid_col">
+                    <div class="logo_box">
+                      <img
+                        src="{{ block.settings.logo_image | img_url: 'master' }}"
+                        alt="Gift Logo"
+                        width=""
+                        height=""
+                      >
+                    </div>
+                  </div>
+                {% endif %}
 
-            <div class="header_grid_col">
-              <div class="header_button">
-                <div
-                  style="
-                    --btn-hover-bg: {{ block.settings.btn_hover_bg }};
-                    --btn-hover-text: {{ block.settings.btn_hover_text }};
-                  "
-                >
-                  {% render 'gift-button',
-                    label: block.settings.btn_label,
-                    link: block.settings.btn_link,
-                    bg_color: block.settings.btn_bg,
-                    text_color: block.settings.btn_text
-                  %}
+                {% if block.settings.header_text != blank %}
+                  <div class="header_grid_col">
+                    <h2>{{ block.settings.header_text }}</h2>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.btn_label != blank %}
+                  <div class="header_grid_col">
+                    <div class="header_button">
+                      <div
+                        style="
+                          --btn-hover-bg: {{ block.settings.btn_hover_bg }};
+                          --btn-hover-text: {{ block.settings.btn_hover_text }};
+                        "
+                      >
+                        {% render 'gift-button',
+                          label: block.settings.btn_label,
+                          link: block.settings.btn_link,
+                          bg_color: block.settings.btn_bg,
+                          text_color: block.settings.btn_text
+                        %}
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+
+              <!-- MOBILE HEADER -->
+              <div class="mobile_header_wrapper">
+                <!-- TOP BAR -->
+                <div class="header_grid mobile_header">
+                  {% if block.settings.logo_image != blank %}
+                    <div class="header_grid_col">
+                      <div class="logo_box">
+                        <img
+                          src="{{ block.settings.logo_image | img_url: 'master' }}"
+                          alt="Gift Logo"
+                          width=""
+                          height=""
+                        >
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  <div class="header_grid_col icons_col">
+                    <span class="menuIcon">{% render 'menuIcon' %}</span>
+                    <span class="crossIcon">{% render 'crossicon' %}</span>
+                  </div>
+                </div>
+
+                <!-- TOGGLE CONTENT -->
+                <div class="slideshowHeader hidden">
+                  {% if block.settings.header_text != blank %}
+                    <div class="header_grid_col">
+                      <div class="slide-header">
+                        {{ block.settings.header_text }}
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.btn_label != blank %}
+                    {% comment %} <div class="header_grid_col"> {% endcomment %}
+                    <div class="header_button">
+                      <div
+                        style="
+                          --btn-hover-bg: {{ block.settings.btn_hover_bg }};
+                          --btn-hover-text: {{ block.settings.btn_hover_text }};
+                        "
+                      >
+                        {% render 'gift-button',
+                          label: block.settings.btn_label,
+                          link: block.settings.btn_link,
+                          bg_color: block.settings.btn_bg,
+                          text_color: block.settings.btn_text
+                        %}
+                      </div>
+                      {% comment %} </div> {% endcomment %}
+                    </div>
+                  {% endif %}
                 </div>
               </div>
             </div>
-          </div>
+          {% endif %}
         {% endfor %}
       </div>
     </div>
@@ -61,15 +222,45 @@
     <div class="banner-bottom-wrapper">
       <div class="banner-grid">
         <div class=" banner-grid-col-1">
-          <div class="bannerimg2">
-            <img
-              src="{{ section.settings.bg_image2  | img_url:"master" }}"
-              alt="Background Right Image"
-              ,
-              width=""
-              height=""
-            >
-          </div>
+          {% if section.settings.bg_image2 != blank %}
+            <div class="bannerimg2">
+              <img
+                src="{{ section.settings.bg_image2  | img_url:"master" }}"
+                alt="Background Right Image"
+                ,
+                width=""
+                height=""
+              >
+            </div>
+          {% endif %}
+          {% if section.settings.mob_image2 != blank %}
+            <div class="mobile_wrapper">
+              <div class="mobileimg2">
+                <img
+                  src="{{ section.settings.mob_image2  | img_url:"master" }}"
+                  alt="Background Mobile Image"
+                  ,
+                  width=""
+                  height=""
+                >
+              </div>
+              <div class="banner-button mobile_button">
+                <div
+                  style="
+                    --btn-hover-bg: {{ section.settings.btn_hover_bg }};
+                    --btn-hover-text: {{ section.settings.btn_hover_text }};
+                  "
+                >
+                  {% render 'gift-button',
+                    label: section.settings.btn_label,
+                    link: section.settings.btn_link,
+                    bg_color: section.settings.btn_bg,
+                    text_color: section.settings.btn_text
+                  %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
         </div>
         <div class="banner-grid-col-2">
           <div class="banner-content">
@@ -79,6 +270,11 @@
             <div class="banner_paragraph">
               {% if section.settings.description != blank %}
                 {{ section.settings.description }}
+              {% endif %}
+            </div>
+            <div class="banner_paragraph mobile_paragraph">
+              {% if section.settings.mob_description != blank %}
+                {{ section.settings.mob_description }}
               {% endif %}
             </div>
             <div class="banner-button">
@@ -101,6 +297,23 @@
       </div>
     </div>
   </div>
+
+  {% comment %} Footer {% endcomment %}
+  {% for block in section.blocks %}
+    {% if block.settings.footer_text != blank or block.settings.footer_mob != blank %}
+      <div class="footer_wrapper">
+        <div class="footer_box">
+          <h3>{{ block.settings.footer_text | upcase }}</h3>
+        </div>
+
+        {% if block.settings.footer_mob != blank %}
+          <div class="footer_box footer_mob">
+            <h3>{{ block.settings.footer_mob | upcase }}</h3>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
 </div>
 
 {% schema %}
@@ -127,6 +340,11 @@
       "label": "Right Background Image"
     },
     {
+      "type": "image_picker",
+      "id": "mob_image2",
+      "label": "Mobile Background Image"
+    },
+    {
       "type": "header",
       "content": "Content"
     },
@@ -141,6 +359,12 @@
       "id": "description",
       "label": "Description",
       "default": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "mob_description",
+      "label": "Mobile Description",
+      "default": "<p>Discover Joy: Your Ultimate Holiday Gift Destination.</p>"
     },
     {
       "type": "header",
@@ -245,6 +469,25 @@
           "default": "#ffffff"
         }
       ]
+    },
+    {
+      "type": "footer_block",
+      "name": "Footer",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "footer_text",
+          "label": "Footer Text",
+          "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+        },
+        {
+          "type": "text",
+          "id": "footer_mob",
+          "label": "Footer Mobile Text",
+          "default": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
+        }
+      ]
     }
   ],
   "presets": [
@@ -259,3 +502,26 @@
   ]
 }
 {% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.mobile_header_wrapper').forEach((wrapper) => {
+      const menuIcon = wrapper.querySelector('.menuIcon');
+      const crossIcon = wrapper.querySelector('.crossIcon');
+      const mobileHeader = wrapper.querySelector('.mobile_header');
+      const slideshow = wrapper.querySelector('.slideshowHeader');
+
+      if (menuIcon && crossIcon && slideshow) {
+        menuIcon.addEventListener('click', function () {
+          slideshow.classList.remove('hidden');
+          mobileHeader.classList.add('active');
+        });
+
+        crossIcon.addEventListener('click', function () {
+          slideshow.classList.add('hidden');
+          mobileHeader.classList.remove('active');
+        });
+      }
+    });
+  });
+</script>
