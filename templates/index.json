@@ -69,8 +69,8 @@
           "type": "product",
           "settings": {
             "product": "blue-silk-tuxedo",
-            "dot_top": 51,
-            "dot_left": 50
+            "dot_top": 52,
+            "dot_left": 85
           }
         },
         "product_xJFd6F": {
@@ -101,7 +101,7 @@
           "type": "product",
           "settings": {
             "product": "dark-denim-top",
-            "dot_top": 50,
+            "dot_top": 41,
             "dot_left": 75
           }
         }
