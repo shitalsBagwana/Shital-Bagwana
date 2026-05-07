@@ -53,9 +53,76 @@
         "btn_hover_bg": "#333333",
         "btn_hover_text": "#ffffff"
       }
+    },
+    "tisso_vision_BEebXX": {
+      "type": "tisso-vision",
+      "blocks": {
+        "product_ziPRqn": {
+          "type": "product",
+          "settings": {
+            "product": "black-leather-bag",
+            "dot_top": 50,
+            "dot_left": 50
+          }
+        },
+        "product_4h4PYa": {
+          "type": "product",
+          "settings": {
+            "product": "blue-silk-tuxedo",
+            "dot_top": 50,
+            "dot_left": 50
+          }
+        },
+        "product_xJFd6F": {
+          "type": "product",
+          "settings": {
+            "product": "chequered-red-shirt",
+            "dot_top": 50,
+            "dot_left": 40
+          }
+        },
+        "product_7JN6QA": {
+          "type": "product",
+          "settings": {
+            "product": "classic-leather-jacket",
+            "dot_top": 50,
+            "dot_left": 50
+          }
+        },
+        "product_Ehja3K": {
+          "type": "product",
+          "settings": {
+            "product": "classic-varsity-top",
+            "dot_top": 50,
+            "dot_left": 50
+          }
+        },
+        "product_h49Rxh": {
+          "type": "product",
+          "settings": {
+            "product": "dark-denim-top",
+            "dot_top": 50,
+            "dot_left": 50
+          }
+        }
+      },
+      "block_order": [
+        "product_ziPRqn",
+        "product_4h4PYa",
+        "product_xJFd6F",
+        "product_7JN6QA",
+        "product_Ehja3K",
+        "product_h49Rxh"
+      ],
+      "name": "Tisso Vision Grid",
+      "settings": {
+        "section_title": "Tisso vision in the wild",
+        "grid_gap": 20
+      }
     }
   },
   "order": [
-    "main_banner_gi6mT9"
+    "main_banner_gi6mT9",
+    "tisso_vision_BEebXX"
   ]
 }
