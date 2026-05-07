@@ -19,7 +19,7 @@
         {% assign product = block.settings.product %}
 
         {% if product != blank %}
-          <div class="tisso_product_col">
+          <div class="tisso_product_col" {{ block.shopify_attributes }}>
             <div class="tisso_product">
               <!-- Product Image -->
               <div class="tisso_product_image">
