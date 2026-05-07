@@ -12,11 +12,11 @@
     "main_banner_gi6mT9": {
       "type": "main-banner",
       "blocks": {
-        "content_block_m7YWAT": {
+        "content_block_DQWa8M": {
           "type": "content_block",
           "settings": {
             "top_text": "TISSOT VISION",
-            "logo_image": "shopify://shop_images/Group_1000007777.png",
+            "logo_image": "shopify://shop_images/Group_1000007777_3.png",
             "header_text": "<p>Find the ideal gift for your loved ones.</p>",
             "btn_label": "choose gift",
             "btn_link": "",
@@ -28,13 +28,13 @@
         }
       },
       "block_order": [
-        "content_block_m7YWAT"
+        "content_block_DQWa8M"
       ],
       "name": "Gift Guide Banner",
       "settings": {
-        "bg_image": "shopify://shop_images/Frame_2.png",
-        "bg_image2": "shopify://shop_images/Frame_8.png",
-        "mob_image2": "shopify://shop_images/Frame_8.png",
+        "bg_image": "shopify://shop_images/Frame_9.png",
+        "bg_image2": "shopify://shop_images/Frame_10.png",
+        "mob_image2": "shopify://shop_images/Frame_11.png",
         "title": "The Gift Guide",
         "description": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>",
         "mob_description": "<p>Discover Joy: Your Ultimate Holiday Gift Destination.</p>",
@@ -45,76 +45,9 @@
         "btn_hover_bg": "#333333",
         "btn_hover_text": "#ffffff"
       }
-    },
-    "tisso_vision_hR9zEq": {
-      "type": "tisso-vision",
-      "blocks": {
-        "product_Vf7CKV": {
-          "type": "product",
-          "settings": {
-            "product": "dark-denim-top",
-            "dot_top": 50,
-            "dot_left": 50
-          }
-        },
-        "product_L6adpF": {
-          "type": "product",
-          "settings": {
-            "product": "classic-varsity-top",
-            "dot_top": 50,
-            "dot_left": 50
-          }
-        },
-        "product_khBLPQ": {
-          "type": "product",
-          "settings": {
-            "product": "classic-leather-jacket",
-            "dot_top": 50,
-            "dot_left": 50
-          }
-        },
-        "product_Pqci4L": {
-          "type": "product",
-          "settings": {
-            "product": "chequered-red-shirt",
-            "dot_top": 50,
-            "dot_left": 50
-          }
-        },
-        "product_m9D8TK": {
-          "type": "product",
-          "settings": {
-            "product": "blue-silk-tuxedo",
-            "dot_top": 50,
-            "dot_left": 50
-          }
-        },
-        "product_FiPUpp": {
-          "type": "product",
-          "settings": {
-            "product": "black-leather-bag",
-            "dot_top": 50,
-            "dot_left": 50
-          }
-        }
-      },
-      "block_order": [
-        "product_Vf7CKV",
-        "product_L6adpF",
-        "product_khBLPQ",
-        "product_Pqci4L",
-        "product_m9D8TK",
-        "product_FiPUpp"
-      ],
-      "name": "Tisso Vision Grid",
-      "settings": {
-        "section_title": "Tisso vision in the wild",
-        "grid_gap": 20
-      }
     }
   },
   "order": [
-    "main_banner_gi6mT9",
-    "tisso_vision_hR9zEq"
+    "main_banner_gi6mT9"
   ]
 }
