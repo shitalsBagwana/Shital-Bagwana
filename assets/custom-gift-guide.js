@@ -48,7 +48,6 @@ plusDog.forEach((dot, index) => {
 });
 
 function closePopup() {
-  // Close all popups
   mainPopup.forEach((popup) => {
     popup.classList.remove("active");
   });
@@ -61,8 +60,6 @@ function closePopup() {
 popupCross.forEach((cross) => {
   cross.addEventListener("click", closePopup);
 });
-
-// Close popup on overlay click
 overlay.addEventListener("click", closePopup);
 
 // ===============================
@@ -88,8 +85,6 @@ allPopups.forEach((popup) => {
 
     let finalCombination = `${option2} / ${option1}`;
 
-    console.log("Selected Combination:", finalCombination);
-
     let variantBox = popup.querySelectorAll(".variant_box");
 
     variantBox.forEach((variant) => {
@@ -97,8 +92,6 @@ allPopups.forEach((popup) => {
 
       if (finalCombination.trim() === variantValue.trim()) {
         variantId = variant.getAttribute("productid");
-
-        console.log("Matched Variant ID:", variantId);
 
         addToCartBtn.setAttribute("data-id", variantId);
       }
@@ -132,7 +125,6 @@ allPopups.forEach((popup) => {
   addToCartBtn.addEventListener("click", () => {
     let mainProductId = addToCartBtn.getAttribute("data-id");
 
-    // Check variant selected or not
     if (!mainProductId) {
       alert("Please select variant");
       return;
@@ -152,8 +144,6 @@ allPopups.forEach((popup) => {
         id: 47971787440282,
         quantity: 1,
       });
-
-      console.log("Free gift added");
     }
 
     // ===============================
@@ -170,7 +160,6 @@ allPopups.forEach((popup) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Products added to cart:", data);
         window.location.href = "/cart";
       })
       .catch((error) => {
