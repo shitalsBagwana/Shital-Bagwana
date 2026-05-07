@@ -1,27 +1,77 @@
-// popup Module Javascript
-// let plusDog = document.querySelectorAll(".plusDog");
-// let main_popup = document.querySelectorAll(".main-popup");
-// let popupCross = document.querySelectorAll(".popupCross");
+// ===============================
+// Mobile Header Toggle JS Start
+// ===============================
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".mobile_header_wrapper").forEach((wrapper) => {
+    const menuIcon = wrapper.querySelector(".menuIcon");
+    const crossIcon = wrapper.querySelector(".crossIcon");
+    const mobileHeader = wrapper.querySelector(".mobile_header");
+    const slideshow = wrapper.querySelector(".slideshowHeader");
 
-// plusDog.forEach((dot, index) => {
-//   dot.addEventListener("click", () => {
-//     main_popup.forEach((popup) => {
-//       popup.classList.remove("active");
-//     });
+    if (menuIcon && crossIcon && mobileHeader && slideshow) {
+      menuIcon.addEventListener("click", function () {
+        slideshow.classList.remove("hidden");
+        mobileHeader.classList.add("active");
+      });
 
-//     main_popup[index].classList.add("active");
-//   });
-// });
+      crossIcon.addEventListener("click", function () {
+        slideshow.classList.add("hidden");
+        mobileHeader.classList.remove("active");
+      });
+    }
+  });
+});
+// ===============================
+// Mobile Header Toggle JS End
+// ===============================
 
-// popupCross.forEach((cross) => {
-//   cross.addEventListener("click", () => {
-//     main_popup.forEach((popup) => {
-//       popup.classList.remove("active");
-//     });
-//   });
-// });
+// ===============================
+// Popup JS Start
+// ===============================
+let plusDog = document.querySelectorAll(".plusDog");
+let mainPopup = document.querySelectorAll(".main-popup");
+let popupCross = document.querySelectorAll(".popupCross");
+let overlay = document.querySelector(".popup-overlay");
 
-//Variant Javascript
+plusDog.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    mainPopup.forEach((popup) => {
+      popup.classList.remove("active");
+    });
+
+    mainPopup[index].classList.add("active");
+
+    overlay.classList.add("active");
+
+    document.body.classList.add("popup-open");
+  });
+});
+
+function closePopup() {
+  // Close all popups
+  mainPopup.forEach((popup) => {
+    popup.classList.remove("active");
+  });
+
+  overlay.classList.remove("active");
+
+  document.body.classList.remove("popup-open");
+}
+
+popupCross.forEach((cross) => {
+  cross.addEventListener("click", closePopup);
+});
+
+// Close popup on overlay click
+overlay.addEventListener("click", closePopup);
+
+// ===============================
+// Popup JS End
+// ===============================
+
+// ===============================
+// Product Variant & Add To Cart JS Start
+// ===============================
 let allPopups = document.querySelectorAll(".main-popup");
 
 allPopups.forEach((popup) => {
@@ -38,11 +88,11 @@ allPopups.forEach((popup) => {
 
     let finalCombination = `${option2} / ${option1}`;
 
-    console.log("finalCombination:", finalCombination);
+    console.log("Selected Combination:", finalCombination);
 
-    let variant_box = popup.querySelectorAll(".variant_box");
+    let variantBox = popup.querySelectorAll(".variant_box");
 
-    variant_box.forEach((variant) => {
+    variantBox.forEach((variant) => {
       let variantValue = variant.getAttribute("productvariant");
 
       if (finalCombination.trim() === variantValue.trim()) {
@@ -72,16 +122,17 @@ allPopups.forEach((popup) => {
   if (productSelect) {
     productSelect.addEventListener("change", () => {
       option2 = productSelect.value;
-
       updateCombination();
     });
   }
 
-  // Add To Cart
-
+  // ===============================
+  // Add To Cart Functionality
+  // ===============================
   addToCartBtn.addEventListener("click", () => {
     let mainProductId = addToCartBtn.getAttribute("data-id");
 
+    // Check variant selected or not
     if (!mainProductId) {
       alert("Please select variant");
       return;
@@ -96,7 +147,6 @@ allPopups.forEach((popup) => {
       },
     ];
 
-    // FREE GIFT CONDITION
     if (finalCombination.trim() === "M / Black") {
       cartItems.push({
         id: 47971787440282,
@@ -106,6 +156,9 @@ allPopups.forEach((popup) => {
       console.log("Free gift added");
     }
 
+    // ===============================
+    // Shopify AJAX Add To Cart
+    // ===============================
     fetch("/cart/add.js", {
       method: "POST",
       headers: {
@@ -117,51 +170,14 @@ allPopups.forEach((popup) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Added to cart:", data);
-
+        console.log("Products added to cart:", data);
         window.location.href = "/cart";
       })
       .catch((error) => {
-        console.log("Error:", error);
+        console.log("Cart Error:", error);
       });
   });
 });
-
-// popup
-let plusDog = document.querySelectorAll(".plusDog");
-let main_popup = document.querySelectorAll(".main-popup");
-let popupCross = document.querySelectorAll(".popupCross");
-let overlay = document.querySelector(".popup-overlay");
-
-// Open popup
-plusDog.forEach((dot, index) => {
-  dot.addEventListener("click", () => {
-    main_popup.forEach((popup) => {
-      popup.classList.remove("active");
-    });
-
-    main_popup[index].classList.add("active");
-    overlay.classList.add("active");
-
-    // Body scroll stop
-    document.body.classList.add("popup-open");
-  });
-});
-
-// Close popup
-function closePopup() {
-  main_popup.forEach((popup) => {
-    popup.classList.remove("active");
-  });
-
-  overlay.classList.remove("active");
-
-  // Body scroll start
-  document.body.classList.remove("popup-open");
-}
-
-popupCross.forEach((cross) => {
-  cross.addEventListener("click", closePopup);
-});
-
-overlay.addEventListener("click", closePopup);
+// ===============================
+// Product Variant & Add To Cart JS End
+// ===============================
