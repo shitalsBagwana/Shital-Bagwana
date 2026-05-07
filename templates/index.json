@@ -86,15 +86,15 @@
           "settings": {
             "product": "classic-leather-jacket",
             "dot_top": 20,
-            "dot_left": 50
+            "dot_left": 70
           }
         },
         "product_Ehja3K": {
           "type": "product",
           "settings": {
             "product": "classic-varsity-top",
-            "dot_top": 50,
-            "dot_left": 50
+            "dot_top": 25,
+            "dot_left": 52
           }
         },
         "product_h49Rxh": {
@@ -102,7 +102,7 @@
           "settings": {
             "product": "dark-denim-top",
             "dot_top": 50,
-            "dot_left": 50
+            "dot_left": 75
           }
         }
       },
