@@ -41,7 +41,9 @@
 .main_gift_wrapper .main_header_wrapper {
   width: 100%;
   background-color: #f5f5f5;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 11;
 }
 .header_box .header_grid {
   display: flex;
@@ -68,25 +70,65 @@
 }
 .header_grid_col .header_button {
   padding: 10px 0;
+  position: relative;
 }
+
 .header_button a.custom-btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
   font-family: "Jost", sans-serif;
   font-size: 16px;
   line-height: 20.48px;
   letter-spacing: 0px;
   font-weight: 400;
-  font-style: Regular;
   text-align: center;
   vertical-align: middle;
   text-transform: uppercase;
   padding: 11.67px 64px 11.67px 41px;
   display: inline-block;
+  transition: color 0.4s ease;
 }
+
+.header_button a.custom-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+.header_button a.custom-btn svg path {
+  fill: #000000;
+  transition: fill 0.4s ease;
+}
+
+.header_button a.custom-btn:hover svg path {
+  fill: #ffffff;
+}
+
+.header_button a.custom-btn:hover::before {
+  left: 0;
+}
+
+.header_button a.custom-btn:hover {
+  color: #ffffff !important;
+}
+
 .header_box .mobile_header_wrapper {
   display: none;
 }
 .header_grid.mobile_header .crossIcon {
   display: none;
+}
+.header_button a.custom-btn span {
+  position: absolute;
+  right: 25px;
+  transform: translateY(5px);
 }
 /* media Query  */
 @media (max-width: 768px) {
@@ -100,13 +142,24 @@
   .header_box .mobile_header_wrapper {
     display: block;
   }
+
   .header_box .header_grid {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
-    padding: 23px 17px;
+    padding: 23px 16px;
     box-shadow: 0 4px 10px #0000001a;
+    flex-direction: row-reverse;
+  }
+  .header_grid_col.icons_col {
+    width: 10%;
+  }
+  .header_grid_col {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .header_grid.mobile_header.active .menuIcon {
     display: none;
@@ -192,19 +245,62 @@
   font-style: Regular;
   vertical-align: middle;
 }
+.banner-button {
+  position: relative;
+}
 
 .banner-bottom-wrapper a.custom-btn {
-  font-family: "Jost", sans-serif;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  font-family: Jost, sans-serif;
   font-size: 16px;
   line-height: 20.48px;
   letter-spacing: 0px;
   text-align: center;
   font-weight: 400;
-  font-style: Regular;
   vertical-align: middle;
   text-transform: uppercase;
   display: inline-block;
   padding: 14.26px 77px 14.74px 55px;
+  transition: color 0.4s ease;
+}
+.banner-button a.custom-btn span {
+  position: absolute;
+  right: 25px;
+  transform: translateY(5px);
+}
+/* animation layer */
+.banner-bottom-wrapper a.custom-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #fff544;
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.banner-button a.custom-btn svg path {
+  fill: #ffffff;
+  transition: fill 0.4s ease;
+}
+
+.banner-button a.custom-btn:hover svg path {
+  fill: #000000;
+}
+
+/* hover animation */
+.banner-bottom-wrapper a.custom-btn:hover::before {
+  left: 0;
+}
+
+/* text color change */
+.banner-bottom-wrapper a.custom-btn:hover {
+  color: #000000 !important;
 }
 
 /* Footer Css  */
@@ -304,19 +400,49 @@
     padding: 13px 54px 13px 20px;
   }
 }
+@media (min-width: 769px) and (max-width: 950px) {
+  .banner-bottom-wrapper .banner-headding {
+    margin: 0 0 26px;
+  }
+  .banner-bottom-wrapper .banner-headding h2 {
+    font-size: 30px;
+  }
+  .banner-bottom-wrapper .banner_paragraph p {
+    font-size: 16px;
+    line-height: 21px;
+  }
+  .banner-bottom-wrapper a.custom-btn {
+    font-size: 14px;
+  }
+}
+@media (min-width: 950px) and (max-width: 1199px) {
+  .banner-bottom-wrapper .banner-headding {
+    margin: 0 0 26px;
+  }
+  .banner-bottom-wrapper .banner-headding h2 {
+    font-size: 43px;
+  }
+  .banner-bottom-wrapper .banner_paragraph p {
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .banner-content {
+    margin: 0 24px 0px 40px;
+  }
+}
 
 /* header  */
 
 /* main-banner.liquid Css End */
-
 /* tisso-vision.liquid css Start */
 .tisso_vision_main_wrapper {
   width: 100%;
   position: relative;
 }
 .tisso_vision_main_wrapper .tisso_conatianer {
+  width: calc(100% - 102px);
   max-width: 1440px;
-  margin: 90px 51px 51px;
+  margin: 90px auto 51px;
 }
 .tisso_vision_main_wrapper .tisso_heading {
   margin-bottom: 30px;
@@ -363,7 +489,7 @@
 }
 
 /* SELECT OPTION */
-.select {
+.variant_block .select {
   position: relative;
   display: flex;
   width: 100%;
@@ -371,21 +497,16 @@
   height: 45px;
   line-height: 45px;
   background: #5c6664;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   overflow: hidden;
 }
 
 .select select {
-  /* -webkit-appearance: none; */
-  appearance: none;
-  /* border: none; */
-  /* background: transparent; */
-  color: #000;
-  /* padding: 0 10px; */
-  width: 100%;
   cursor: pointer;
-  border: 0.5px solid #000000;
   border-radius: unset;
+  padding: 10px 18px 10px 13px;
+  width: 100%;
+  display: block;
 }
 .select select option {
   font-family: "Jost", sans-serif;
@@ -397,19 +518,274 @@
   text-align: center;
   vertical-align: middle;
 }
-.select::after {
-  content: "\25BC";
+.select:after {
+  content: "";
   position: absolute;
   right: 0;
   top: 0;
-  padding: 0 15px;
-  background: #2b2e2e;
   pointer-events: none;
+  border-left: 0.5px solid #000000;
+  height: 100%;
+  width: 40px;
 }
+.productSelect option:first-child {
+  text-align: left;
+}
+/* popup */
+.tisso_vision_main_wrapper .main-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 311px;
+  background: #ffffff;
+  padding: 20px 20px 25px;
+  display: none;
+  z-index: 9999;
+}
+.main-popup .product-popupimage img {
+  max-width: 120px;
+  min-height: 100%;
+  object-fit: cover;
+  display: flex;
+}
+.main-popup .product-row-box {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  padding-bottom: 10px;
+}
+.main-popup .popupCross {
+  float: right;
+  margin-bottom: 10px;
+  display: block;
+}
+.product-row-box .product-popupimage {
+  width: 40%;
+}
+.product-row-box .product_description_box {
+  width: 60%;
+}
+
+.product_description_box h5 {
+  font-family: "Jost", sans-serif;
+  font-size: 16px;
+  line-height: 19.2px;
+  letter-spacing: 0px;
+  font-weight: 300;
+  font-style: Light;
+  vertical-align: middle;
+  color: #000000;
+  margin: 0 0 20px;
+}
+.product_description_box h2 {
+  font-family: "Lustria", sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 19.2px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  color: #000000;
+  margin: 0 0 12px;
+}
+.product_description_box p {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-style: Light;
+  font-size: 14px;
+  line-height: 15.4px;
+  letter-spacing: -1%;
+  color: #000000;
+}
+.product_options .custom_variant_wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  gap: 11.52px;
+}
+.custom_variant_wrapper label.variant_label {
+  font-family: "Jost", sans-serif;
+  font-size: 14px;
+  line-height: 18.2px;
+  letter-spacing: 0%;
+  color: #333;
+  font-weight: 400;
+  font-style: Regular;
+  text-transform: capitalize;
+  padding-bottom: 6.35px;
+  display: inline-block;
+}
+.variant_block .color_options {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: left;
+  border: 0.5px solid #000000;
+}
+.variant_block .option_button {
+  padding: 10.59px 8.5px 11.48px 15px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.option_button .value_span {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: -2%;
+  text-transform: capitalize;
+  display: block;
+  width: 100%;
+  color: #000000;
+}
+span.color_swatch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5.8px;
+  height: 40px;
+  border-left: 0.5px solid #000000;
+  border-right: 0.5px solid #000000;
+}
+.product-button {
+  margin-top: 50px;
+  position: relative;
+}
+button.button_bundle {
+  display: flex;
+  width: 100%;
+  padding: 12px 74px;
+  border: 1px solid #000000;
+  background: #000000;
+  color: #ffffff;
+  font-family: Jost;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 20.48px;
+  letter-spacing: 0px;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.tisso_vision_main_wrapper .main-popup.active {
+  display: block;
+}
+
+.variant_block .option_button.active {
+  background: #000000;
+}
+.option_button .value_span {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: -2%;
+  text-transform: capitalize;
+  columns: #000000;
+}
+.variant_block .option_button.active .value_span {
+  color: #ffffff;
+}
+
+.product-button span {
+  position: absolute;
+  right: 33px;
+}
+.product-button .button_bundle svg path {
+  fill: #ffffff;
+  transition: fill 0.4s ease;
+}
+
+.tisso_vision_main_wrapper .popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 99;
+}
+
+.tisso_vision_main_wrapper .popup-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tisso_vision_main_wrapper .main-popup {
+  z-index: 100;
+}
+
 @media (min-width: 768px) {
   .tisso_vision_main_wrapper .tisso_product_grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tisso_vision_main_wrapper .tisso_conatianer {
+    width: calc(100% - 33.44px);
+    margin: 40px auto;
+  }
+
+  .tisso_vision_main_wrapper .tisso_product_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    width: 100%;
+  }
+  .tisso_vision_main_wrapper .tisso_product_image img {
+    object-fit: contain;
+    display: flex;
+    min-height: 100%;
+  }
+  .tisso_vision_main_wrapper .tisso_heading {
+    margin-bottom: 20px;
+  }
+  .tisso_vision_main_wrapper .tisso_heading h2 {
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+  }
+  .tisso_vision_main_wrapper .main-popup {
+    width: 270px;
+  }
+  button.button_bundle {
+    font-size: 13px;
+  }
+  .product-button {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1199px) {
+  .tisso_vision_main_wrapper .tisso_product_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+  }
+
+  .tisso_vision_main_wrapper .tisso_conatianer {
+    margin: 60px auto 40px;
+    padding: 0 24px;
+  }
+  .tisso_vision_main_wrapper .tisso_product_image img {
+    object-fit: contain;
+    display: flex;
+    min-height: 100%;
   }
 }

@@ -9,10 +9,11 @@
       {% endif %}
     </div>
 
+    <div class="popup-overlay"></div>
     <!-- Product Grid -->
     <div
       class="tisso_product_grid"
-      style="gap: {{ section.settings.grid_gap }}px;"
+      {% comment %} style="gap: {{ section.settings.grid_gap }}px;" {% endcomment %}
     >
       {% for block in section.blocks %}
         {% assign product = block.settings.product %}
@@ -41,24 +42,22 @@
                 </span>
               </div>
             </div>
-          </div>
-
-          {% comment %} product popup {% endcomment %}
-          <div class="main-popup">
-            <div class="popupCross">{% render 'crossIcon' %}</div>
-            <div class="product-row-box">
-              <div class="product-popupimage">
-                <img
-                  src="{{ product.featured_image | img_url: 'master' }}"
-                  alt="{{ product.title }}"
-                  width=""
-                  height=""
-                >
-              </div>
-              <div class="product_description_box">
-                <h4>{{ product.title }}</h4>
-                <h3>{{ product.price | money_with_currency }}</h3>
-                {{ product.description }}
+            <div class="main-popup">
+              <div class="popupCross">{% render 'crossIcon' %}</div>
+              <div class="product-row-box">
+                <div class="product-popupimage">
+                  <img
+                    src="{{ product.featured_image | img_url: 'master' }}"
+                    alt="{{ product.title }}"
+                    width=""
+                    height=""
+                  >
+                </div>
+                <div class="product_description_box">
+                  <h5>{{ product.title }}</h5>
+                  <h2>{{ product.price | money_with_currency }}</h2>
+                  {{ product.description }}
+                </div>
               </div>
               <div class="product_options">
                 <div class="product-variant hidden">
@@ -72,63 +71,31 @@
                     </span>
                   {% endfor %}
                 </div>
-                {% comment %}
-                  <div class="selected_variant_options">
-                    {% for option in product.options_with_values %}
-                      <div class="option_block">
-                        <h3>{{ option.name }}:</h3>
-                        {% for value in option.values %}
-                          <span class="{% if value == option.selected_value %}active{% endif %}">
-                            {{ value }}
-                          </span>
-                        {% endfor %}
-                      </div>
-                    {% endfor %}
-                  </div>
-                {% endcomment %}
 
                 <div class="custom_variant_wrapper">
                   {% for option in product.options_with_values %}
                     <div class="variant_block">
-                      <!-- Option Name -->
                       <label class="variant_label">{{ option.name }}</label>
                       {% if option.name == 'Color' %}
-                        <!-- Color Buttons -->
                         <div class="color_options">
                           {% for value in option.values %}
-                            <div class="option_button">
-                              <span> {{ value }}</span>
+                            <div
+                              class="option_button"
+                              optionAttr="{{ value }}"
+                            >
+                              <span
+                                class="color_swatch"
+                                style="background-color: {{ value | downcase }};"
+                              ></span>
+                              <div class="value_span">{{ value }}</div>
                             </div>
                           {% endfor %}
                         </div>
 
                       {% elsif option.name == 'Size' %}
-                        <!-- Dropdown -->
-                        {% comment %}
-                          <div class="custom_select">
-                            <div class="select_box">
-                              <span class="selected_text">
-                                {{ option.selected_value | default: 'Choose your size' }}
-                              </span>
-                              <span class="arrow">⌄</span>
-                            </div>
-
-                            <ul class="dropdown_list">
-                              {% for value in option.values %}
-                                <li
-                                  class="{% if value == option.selected_value %}active{% endif %}"
-                                  data-value="{{ value }}"
-                                >
-                                  {{ value }}
-                                </li>
-                              {% endfor %}
-                            </ul>
-                          </div>
-                        {% endcomment %}
-
                         <div class="select">
-                          <select name="id" id="productSelect">
-                            <option disabled selected>Choose your {{ product.options_with_values[0].name }}</option>
+                          <select name="id" class="productSelect">
+                            <option disabled selected>Choose your size</option>
 
                             {% for value in option.values %}
                               <option optionvalue="{{ value }}">
@@ -142,8 +109,107 @@
                   {% endfor %}
                 </div>
               </div>
+
+              <div class="product-button">
+                {% if product.available %}
+                  <button
+                    class="button_bundle"
+                    data-id="{{ product.variants.first.id }}"
+                  >
+                    Add to cart
+                    <span>{% render 'btn-arrow' %}</span>
+                  </button>
+                {% else %}
+                  <button class="button_bundle out_of_stock" disabled>Out of stock</button>
+                {% endif %}
+              </div>
             </div>
           </div>
+
+          {% comment %} product popup {% endcomment %}
+          {% comment %}
+            <div class="main-popup">
+              <div class="popupCross">{% render 'crossIcon' %}</div>
+              <div class="product-row-box">
+                <div class="product-popupimage">
+                  <img
+                    src="{{ product.featured_image | img_url: 'master' }}"
+                    alt="{{ product.title }}"
+                    width=""
+                    height=""
+                  >
+                </div>
+                <div class="product_description_box">
+                  <h5>{{ product.title }}</h5>
+                  <h2>{{ product.price | money_with_currency }}</h2>
+                  {{ product.description }}
+                </div>
+              </div>
+              <div class="product_options">
+                <div class="product-variant hidden">
+                  {% for variant in product.variants %}
+                    <span
+                      class="variant_box"
+                      productVariant="{{ variant.title }}"
+                      productId="{{ variant.id }}"
+                    >
+                      {{ variant.title }}
+                    </span>
+                  {% endfor %}
+                </div>
+
+                <div class="custom_variant_wrapper">
+                  {% for option in product.options_with_values %}
+                    <div class="variant_block">
+                      <label class="variant_label">{{ option.name }}</label>
+                      {% if option.name == 'Color' %}
+                        <div class="color_options">
+                          {% for value in option.values %}
+                            <div
+                              class="option_button"
+                              optionAttr="{{ value }}"
+                            >
+                              <span
+                                class="color_swatch"
+                                style="background-color: {{ value | downcase }};"
+                              ></span>
+                              <div class="value_span">{{ value }}</div>
+                            </div>
+                          {% endfor %}
+                        </div>
+
+                      {% elsif option.name == 'Size' %}
+                        <div class="select">
+                          <select name="id" class="productSelect">
+                            <option disabled selected>Choose your size</option>
+
+                            {% for value in option.values %}
+                              <option optionvalue="{{ value }}">
+                                {{ value }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="product-button">
+                {% if product.available %}
+                  <button
+                    class="button_bundle"
+                    data-id="{{ product.variants.first.id }}"
+                  >
+                    Add to cart
+                  </button>
+                {% else %}
+                  <button class="button_bundle out_of_stock" disabled>Out of stock</button>
+                {% endif %}
+              </div>
+            </div>
+          {% endcomment %}
         {% endif %}
       {% endfor %}
     </div>
