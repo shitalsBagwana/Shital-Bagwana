@@ -85,7 +85,7 @@
           "type": "product",
           "settings": {
             "product": "classic-leather-jacket",
-            "dot_top": 50,
+            "dot_top": 20,
             "dot_left": 50
           }
         },
