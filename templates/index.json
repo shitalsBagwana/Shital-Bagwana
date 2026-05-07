@@ -12,6 +12,13 @@
     "main_banner_gi6mT9": {
       "type": "main-banner",
       "blocks": {
+        "footer_block_thQtgG": {
+          "type": "footer_block",
+          "settings": {
+            "footer_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
+            "footer_mob": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
+          }
+        },
         "content_block_DQWa8M": {
           "type": "content_block",
           "settings": {
@@ -28,6 +35,7 @@
         }
       },
       "block_order": [
+        "footer_block_thQtgG",
         "content_block_DQWa8M"
       ],
       "name": "Gift Guide Banner",
